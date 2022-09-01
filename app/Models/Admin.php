@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+
+    protected $table = 'admins';
     /**
      * The attributes that are mass assignable.
      *
@@ -22,7 +24,6 @@ class User extends Authenticatable
         'mobileNumber',
         'second_mobileNumber',
         'password',
-        'roleId',
     ];
 
     /**
@@ -41,5 +42,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+
     ];
 }
