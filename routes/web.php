@@ -14,13 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('dashboard.index');
+    return redirect("/home");
 });
-Route::get('/{name}', function ($name) {
 
-    return view('dashboard.'.$name);
-});
+//Route::get('/{name}', function ($name) {
+//
+//    return view('dashboard.'.$name);
+//});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');

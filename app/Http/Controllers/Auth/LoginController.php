@@ -26,7 +26,13 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "/dashboard";
+
+    public function username()
+    {
+        return 'nationalId'; // or any field which you gonna use
+    }
+
 
     /**
      * Create a new controller instance.
