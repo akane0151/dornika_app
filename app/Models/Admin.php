@@ -13,7 +13,7 @@ class Admin extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-    protected $table = 'admins';
+    protected $guard = 'admin';
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +21,7 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'full_name',
+        'nationalId',
         'mobileNumber',
         'second_mobileNumber',
         'password',

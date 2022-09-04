@@ -24,4 +24,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware("auth")->name('home');
+Route::prefix('admin')->group(function () {
+    Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
