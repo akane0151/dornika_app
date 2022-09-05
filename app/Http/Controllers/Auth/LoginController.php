@@ -28,7 +28,13 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = "/dashboard";
+    protected function redirectTo(){
+        if(Auth::check()&&Auth::guard()=="admin"){
+            return "/admin/dahsboard";
+        }elseif (Auth::check()&&Auth::guard()=="web"){
+            return "/user/panel";
+        }
+    }
 
     public function username()
     {
@@ -53,9 +59,9 @@ class LoginController extends Controller
             'password' => 'required|min:6|max:16'
         ]);
         if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))){
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/admin/dashboard');
         } elseif (Auth::guard('web')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))){
-            return redirect()->intended('/panel');
+            return redirect()->intended('/user/panel');
         }else {
             return back()->withInput($request->only('username', 'remember'));
         }

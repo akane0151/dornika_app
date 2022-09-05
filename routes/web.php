@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect("/home");
-});
+
 
 //Route::get('/{name}', function ($name) {
 //
@@ -26,6 +24,9 @@ Auth::routes();
 
 Route::prefix('admin')->group(function () {
     Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
+    Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function (){
+    return redirect("/login");
+});

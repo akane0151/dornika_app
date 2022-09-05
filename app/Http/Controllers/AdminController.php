@@ -7,15 +7,23 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-//    /**
-//     * Create a new controller instance.
-//     *
-//     * @return void
-//     */
-//    public function __construct()
-//    {
-//        $this->middleware('guest:admin');
-//    }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //$this->middleware('guest:admin');
+
+    }
+
+    public function dashboard()
+    {
+        $user = Auth::guard("admin")->user();
+        return view("admin.dashboard",["user"=>$user]);
+    }
+
 
     /**
      * Show the application dashboard.
@@ -26,6 +34,5 @@ class AdminController extends Controller
     {
         Auth::guard("admin")->logout();
     }
-
 
 }
