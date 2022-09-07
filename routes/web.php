@@ -22,9 +22,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware("admin")->group(function () {
     Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
+    //admin user actions
+    Route::get('/users', [App\Http\Controllers\AdminController::class, 'users']);
+    Route::post('/newUser', [App\Http\Controllers\AdminController::class, 'newUser']);
+    Route::post('/editUser', [App\Http\Controllers\AdminController::class, 'editUser']);
+    Route::post('/removeUser', [App\Http\Controllers\AdminController::class, 'removeUser']);
 });
 
 Route::get('/', function (){

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-@include('header')
+@include('admin.layout.header')
 <!-- /header content -->
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
         <!-- left menu -->
-        @include('leftmenu')
+        @include('admin.layout.leftmenu')
         <!-- left menu -->
 
         <!-- top navigation -->
-        @include('topbar')
+        @include('admin.layout.topbar')
         <!-- /top navigation -->
         <!-- /header content -->
 
@@ -44,7 +44,7 @@
     </table>
 </div>
 <!-- jQuery -->
-@include('footerscript')
+@include('admin.layout.footerscript')
 
 
 </body>
