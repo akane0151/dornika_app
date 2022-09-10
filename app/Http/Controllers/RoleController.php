@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
-class AdminController extends Controller
+class RoleController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,14 +25,14 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function dashboard()
+    public function roles()
     {
-        $user = Auth::guard("admin")->user();
-        $userCount = User::all()->count();
-        return view("admin.dashboard",["user"=>$user,"userCount"=>$userCount]);
+
+        $roles = Role::all();
+        return view("admin.roles",["roles"=>$roles]);
     }
 
-    public function users(){
+    public function add(){
         $user = Auth::guard("admin")->user();
         $users = User::all();
         return view("admin.users",["user"=>$user,"users"=>$users]);
