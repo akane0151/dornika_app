@@ -17,19 +17,18 @@ class RoleController extends Controller
     public function __construct()
     {
         //$this->middleware('guest:admin');
-
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application roles.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function roles()
     {
-
+        $user = Auth::guard("admin")->user();
         $roles = Role::all();
-        return view("admin.roles",["roles"=>$roles]);
+        return view("admin.roles",["roles"=>$roles,"user"=>$user]);
     }
 
     public function add(){
@@ -37,8 +36,6 @@ class RoleController extends Controller
         $users = User::all();
         return view("admin.users",["user"=>$user,"users"=>$users]);
     }
-
-
 
     public function logout()
     {

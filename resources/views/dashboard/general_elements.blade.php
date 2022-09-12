@@ -23,7 +23,7 @@
     <link href="{{asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-    
+
 <!-- PNotify -->
 <link href="{{asset('vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
 <link href="{{asset('vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
@@ -47,7 +47,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="{{asset('build/images/img.jpg')}}" alt="..." class="img-circle profile_img">
+                        <img src="{{asset('build/images/img.jpg')}}" alt="" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>خوش آمدید,</span>
@@ -288,7 +288,7 @@
         </div>
         <!-- /top navigation -->
         <!-- /header content -->
-        
+
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">

@@ -22,7 +22,10 @@
     <link href="{{asset('vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-
+    <!-- PNotify -->
+    <link href="{{asset('vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
+    <link href="{{asset('vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{asset('build/css/custom.min.css')}}" rel="stylesheet">
 </head>

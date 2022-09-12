@@ -45,7 +45,7 @@
 </div>
 <!-- jQuery -->
 @include('admin.layout.footerscript')
-
+@yield('footerScripts')
 
 </body>
 </html>
