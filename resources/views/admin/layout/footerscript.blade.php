@@ -42,4 +42,4 @@
 <script src="{{asset('vendors/jqvmap/examples/js/jquery.vmap.sampledata.js')}}"></script>
 
 <!-- Custom Theme Scripts -->
-<script src="{{asset('build/js/custom.min.js')}}"></script>
+<script src="{{asset('build/js/custom.js')}}"></script>

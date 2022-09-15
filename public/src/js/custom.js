@@ -2221,36 +2221,36 @@ function init_validator() {
 
 /* PNotify */
 
-function init_PNotify() {
-
-    if (typeof (PNotify) === 'undefined') {
-        return;
-    }
-    console.log('init_PNotify');
-
-    new PNotify({
-        title: "PNotify",
-        type: "info",
-        text: "خوش آمدی. سعی کنید از من دور شوید شما می توانید همه چیز را در پشت من کلیک کنید، زیرا من غیر مسدود شده هستم.",
-        nonblock: {
-            nonblock: true
-        },
-        addclass: 'dark',
-        styling: 'bootstrap3',
-        hide: false,
-        before_close: function (PNotify) {
-            PNotify.update({
-                title: PNotify.options.title + " - Enjoy your Stay",
-                before_close: null
-            });
-
-            PNotify.queueRemove();
-
-            return false;
-        }
-    });
-
-};
+// function init_PNotify() {
+//
+//     if (typeof (PNotify) === 'undefined') {
+//         return;
+//     }
+//     console.log('init_PNotify');
+//
+//     new PNotify({
+//         title: "PNotify",
+//         type: "info",
+//         text: "خوش آمدی. سعی کنید از من دور شوید شما می توانید همه چیز را در پشت من کلیک کنید، زیرا من غیر مسدود شده هستم.",
+//         nonblock: {
+//             nonblock: true
+//         },
+//         addclass: 'dark',
+//         styling: 'bootstrap3',
+//         hide: false,
+//         before_close: function (PNotify) {
+//             PNotify.update({
+//                 title: PNotify.options.title + " - Enjoy your Stay",
+//                 before_close: null
+//             });
+//
+//             PNotify.queueRemove();
+//
+//             return false;
+//         }
+//     });
+//
+// };
 
 
 /* CUSTOM NOTIFICATION */
