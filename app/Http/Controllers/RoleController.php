@@ -31,7 +31,8 @@ class RoleController extends Controller
         return view("admin.roles",["roles"=>$roles,"user"=>$user]);
     }
 
-    public function add(){
+    public function add()
+    {
         $user = Auth::guard("admin")->user();
         $users = User::all();
         return view("admin.users",["user"=>$user,"users"=>$users]);
