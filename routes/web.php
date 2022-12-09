@@ -13,13 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-//Route::get('/{name}', function ($name) {
-//
-//    return view('dashboard.'.$name);
-//});
-
 Auth::routes();
 
 Route::prefix('admin')->middleware("admin")->group(function () {
@@ -45,3 +38,4 @@ Route::prefix('admin')->middleware("admin")->group(function () {
 Route::get('/', function (){
     return redirect("/login");
 });
+
