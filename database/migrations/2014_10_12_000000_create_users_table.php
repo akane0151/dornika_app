@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('username',32);
             $table->string('state',128)->nullable();
             $table->string('city',128)->nullable();
-            $table->string('Avatar',128)->nullable();
+            $table->string('avatar',128)->nullable();
             $table->string('password');
-            $table->integer('roleId');
+            $table->boolean('verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

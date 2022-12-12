@@ -145,10 +145,10 @@ return [
     */
 
     'attributes' => [
-        "full_name" => "نام و نام خانوادگی",
+        "username" => "نام کاربری",
         "first_name" => "نام",
         "last_name" => "نام خانوادگی",
-        "national_id" => "کد ملی",
+        "nationalId" => "کد ملی",
         "email" => "آدرس ایمیل",
         "password" => "رمز عبور",
         "password_confirmation" => "تاییدیه ی رمز عبور",
@@ -157,7 +157,7 @@ return [
         "province" => "استان",
         "country" => "کشور",
         "home_address" => "آدرس منزل",
-        "mobile_phone" => "تلفن همراه",
+        "mobileNumber" => "شماره همراه",
         "landline_phone" => "تلفن ثابت",
         "home_zipcode" => "کدپستی منزل",
         "legal_name" => "نام موسسه",
@@ -181,7 +181,7 @@ return [
         "tag" => "تگ",
         "price" => "قیمت",
         "datasheet_file" => "فایل دیتاشیت",
-        "thumbnail" => "تصویر محصول",
+        "avatar" => "تصویر پروفایل",
         "available" => "وضعیت",
         "attachment" => "فایل ضمیمه",
         "message" => "پیام",

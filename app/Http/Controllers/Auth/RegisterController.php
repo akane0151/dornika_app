@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'nState' => ['nullable','required', 'string', 'max:3'],
             'birthDate' => ['nullable','string', 'max:12'],
             'avatar' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
-            'username' => ['required', 'string', 'max:32','unique:users'],
+            'username' => ['required', 'regex:/^[a-zA-Z]/', 'max:32','unique:users'],
             'email' => ['required', 'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8','max:16', 'confirmed'],
             'state' => ['nullable','string', 'max:64'],
@@ -74,10 +74,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if(request()->hasfile('avatar')){
+
+            $avatarName = request()->last_name.'_'.time().'.'.request()->avatar->getClientOriginalExtension();
+
+            request()->avatar->move(public_path('avatars'), $avatarName);
+
+        }
+        try{
+          $user =  User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'nationalId' => $data['nationalId'],
+                'mobileNumber' => $data['mobileNumber'],
+                'gender' => $data['gender'],
+                'vState' => $data['nState'],
+                'birthDate' => $data['birthDate'],
+                'avatar' => $avatarName,
+                'username' => $data['username'],
+                'state' => $data['state'],
+                'city' => $data['city'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+
+          return $user;
+        }
+        catch (\Exception $e){
+
+        }
+
+
+
     }
 }
