@@ -100,6 +100,7 @@
                         </div>
                         <div>
                             <select type="text" id="city" name="city" class="form-control">
+                                <option value="">---</option>
                             </select>
                             @if ($errors->has('city'))
                                 <h5><span class="text-danger">{{$errors->first('city')}}</span></h5>

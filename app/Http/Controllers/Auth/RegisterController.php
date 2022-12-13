@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailNotify;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\nationalId;
 
@@ -56,7 +58,7 @@ class RegisterController extends Controller
             'nationalId' => ['required', 'regex:/^[0-9]{10}$/', new nationalId,'unique:users'],
             'mobileNumber' => ['required', 'regex:/^09[0-9]{9}$/'],
             'gender' => ['required', 'string', 'max:6'],
-            'nState' => ['nullable','required', 'string', 'max:3'],
+            'vState' => ['nullable', 'string', 'max:3'],
             'birthDate' => ['nullable','string', 'max:12'],
             'avatar' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
             'username' => ['required', 'regex:/^[a-zA-Z]/', 'max:32','unique:users'],
@@ -70,25 +72,27 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     //* @return \App\Models\User
      */
     protected function create(array $data)
     {
-        if(request()->hasfile('avatar')){
 
-            $avatarName = request()->last_name.'_'.time().'.'.request()->avatar->getClientOriginalExtension();
+        //try{
+            $avatarName = null;
+            if(request()->hasfile('avatar')){
 
-            request()->avatar->move(public_path('avatars'), $avatarName);
+                $avatarName = request()->last_name.'_'.time().'.'.request()->avatar->getClientOriginalExtension();
 
-        }
-        try{
+                request()->avatar->move(public_path('avatars'), $avatarName);
+
+            }
           $user =  User::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'nationalId' => $data['nationalId'],
                 'mobileNumber' => $data['mobileNumber'],
                 'gender' => $data['gender'],
-                'vState' => $data['nState'],
+                'vState' => $data['vState'],
                 'birthDate' => $data['birthDate'],
                 'avatar' => $avatarName,
                 'username' => $data['username'],
@@ -97,13 +101,14 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-
+          $token = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+          Mail::to($user)->send(new MailNotify($token,$user->id));
 
           return $user;
-        }
-        catch (\Exception $e){
-
-        }
+        //}
+//        catch (\Exception $e){
+//            return $e->getMessage();
+//        }
 
 
 
