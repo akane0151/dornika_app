@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class MailNotify extends Mailable
 {
     use Queueable, SerializesModels;
-    //public $subject;
+    public $subject = "کد فعال سازی";
     public $token;
     public $userId;
     /**

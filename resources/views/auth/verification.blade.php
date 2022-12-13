@@ -6,12 +6,15 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="/verification" method="post">
+                <form action="/user/verify" method="post">
                     @csrf
                     <h3>کاربر عزیز خوش آمدید!</h3>
                     <h4>یک ایمیل حاوی کد فعالسازی برای شما ارسال شده لطفاً کدفعالسازی را وارد کنید.</h4>
                     <div>
                         <input type="text" name="token" class="form-control" placeholder="کد فعالسازی" required="" value="{{ old('token') }}"/>
+                        @if ($errors->any())
+                            <h5><span class="text-danger">{{$errors->first()}}</span></h5>
+                        @endif
                     </div>
 
                     <div>

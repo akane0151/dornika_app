@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\MailNotify;
+use App\Models\VerifyToken;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -32,7 +33,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "/user/verify";
 
     /**
      * Create a new controller instance.
@@ -76,9 +77,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-        //try{
-            $avatarName = null;
+        $avatarName = null;
             if(request()->hasfile('avatar')){
 
                 $avatarName = request()->last_name.'_'.time().'.'.request()->avatar->getClientOriginalExtension();
@@ -101,16 +100,16 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
+            //token generate for verification
           $token = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+            //token insert in its table for checking
+          VerifyToken::insert([
+              "userId"=>$user->id,
+              "token"=>$token
+          ]);
+            //mail to user the token for verification
           Mail::to($user)->send(new MailNotify($token,$user->id));
 
           return $user;
-        //}
-//        catch (\Exception $e){
-//            return $e->getMessage();
-//        }
-
-
-
     }
 }

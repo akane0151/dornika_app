@@ -13,7 +13,7 @@ class CreateVerficationToken extends Migration
      */
     public function up()
     {
-        Schema::create('verfication_token', function (Blueprint $table) {
+        Schema::create('verification_token', function (Blueprint $table) {
             $table->id();
             $table->integer("userId");
             $table->string("token");

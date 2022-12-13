@@ -12,7 +12,6 @@
         <hl/>
     </p>
     <p style="text-align: center;background-color:#cccccc;">
-
     </p>
 </div>
 
