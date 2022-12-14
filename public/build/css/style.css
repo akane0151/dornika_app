@@ -1,0 +1,15 @@
+.main_container .top_nav_home{
+    display: block;
+    margin-right: 0px !important;
+}
+
+.nav-md .container.body .main_col{
+    padding: 10px 20px 0;
+    margin-right:0px !important;
+}
+footer{
+    margin-right: 0px !important;
+}
+.navbar-nav .open .dropdown-menu{
+    right: 0px;
+}

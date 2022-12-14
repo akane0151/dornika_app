@@ -36,10 +36,15 @@ Route::prefix('admin')->middleware("admin")->group(function () {
 });
 
 Route::get('/', function (){
-    return redirect("/login");
+    return redirect("/home");
 });
+Route::get('/home', function (){
+    return view("home");
+});
+Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 Route::prefix('user')->middleware("auth")->group(function () {
     Route::get('/verify', [App\Http\Controllers\UserController::class, 'verifyForm']);
     Route::post('/verify', [App\Http\Controllers\UserController::class, 'verifyUser']);
     Route::get('/panel', [App\Http\Controllers\UserController::class, 'panel']);
+
 });

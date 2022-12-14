@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\VerifyToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -48,5 +49,18 @@ class UserController extends Controller
         if(Auth::user()->verified){
             return view("user.controlpanel");
         }
+    }
+    /**
+     * Log out account user.
+     *
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function logout()
+    {
+        Session::flush();
+
+        Auth::logout();
+
+        return redirect('/');
     }
 }

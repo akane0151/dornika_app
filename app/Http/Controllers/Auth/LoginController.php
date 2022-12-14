@@ -29,16 +29,12 @@ class LoginController extends Controller
      * @var string
      */
     protected function redirectTo(){
-        if(Auth::check()&&Auth::guard()=="admin"){
-            return "/admin/dahsboard";
-        }elseif (Auth::check()&&Auth::guard()=="web"){
-            return "/user/panel";
-        }
+        return "/";
     }
 
     public function username()
     {
-        return 'nationalId';
+        return 'username';
     }
 
     /**
@@ -49,21 +45,32 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('guest:admin')->except('logout');
+        //$this->middleware('guest:admin')->except('logout');
     }
 
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'username' => 'required|string|min:10|max:10',
-            'password' => 'required|min:6|max:16'
+//        $this->validate($request, [
+//            'username' => 'required|string|min:6|max:32',
+//            'password' => 'required|min:8|max:16'
+//        ]);
+
+        $validator = \Validator::make($request->all(), [
+            'username' => ['required', 'string','min:6', 'max:32'],
+            'password' => ['required', 'string','min:8', 'max:16']
+
         ]);
-        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))){
-            return redirect()->intended('/admin/dashboard');
-        } elseif (Auth::guard('web')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))){
-            return redirect()->intended('/user/panel');
+        if ($validator->fails())
+        {
+            return response()->json(['success'=>false,"error"=>"اطلاعات نامعتبر!"]);
+        }
+        if (Auth::guard('web')->attempt(['username' => $request->username, 'password' => $request->password], $request->get('remember'))){
+            //return redirect()->intended('/user/panel');
+            return response()->json(['success'=>true]);
         }else {
-            return back()->withInput($request->only('username', 'remember'));
+            //return back()->withInput($request->only('username', 'remember'));
+            return response()->json(['success'=>false,"error"=>"اطلاعات نا معتبر!"]);
         }
     }
+
 }

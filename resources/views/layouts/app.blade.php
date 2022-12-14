@@ -1,83 +1,233 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <meta name="fontiran.com:license" content="Y68A9">
+    <link rel="icon" href="{{asset('build/images/favicon.ico')}}" type="image/ico"/>
+    <title>{{config('app.name')}}</title>
+    @include('layouts.head')
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+<!-- /header content -->
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <!-- top navigation -->
+        <div class="top_nav_home hidden-print">
+            <div class="nav_menu">
+                <nav>
+                    <ul class="nav navbar-nav navbar-right">
+                        @auth
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="{{asset('build/images/img.jpg')}}" alt="">{{Auth::user()->first_name.' '.Auth::user()->last_name}}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="/profile"> پروفایل</a></li>
+                                <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
+                            </ul>
+                        </li>
+                        @endauth
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        <li>
+                           <button class="btn btn-default" data-toggle="modal"
+                                   data-target=".login-modal-sm" style="margin: 10px;">ورود/ثبت نام</button>
+                            <div class="modal fade login-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                    aria-hidden="true">×</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel2">ورود</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="demo-form">
+                                                <label for="username">نام کاربری <span class="required">*</span> :</label>
+                                                <input type="text" id="username" class="form-control" name="username" required/>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                                <label for="password">رمزعبور <span class="required">*</span> :</label>
+                                                <input type="password" id="password" class="form-control" name="password" required/>
+                                            <hr/>
+                                                <p id="login-loading" class="text-center text-warning" style="display: none;">در حال احراز هویت...</p>
+                                                <p id="login-error" class="text-center red" style="display: none;"></p>
+                                                <p id="login-success" class="text-center green" style="display: none;">ورود به سامانه انجام شد!</p>
+                                                <p>کاربر جدید هستید؟ <a href="register">عضویت در سامانه</a></p>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                            </form>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                                            <button type="button" class="btn btn-primary login-btn">ورورد</button>
+                                        </div>
+
+                                    </div>
                                 </div>
-                            </li>
+                            </div>
+                            <!-- /modals -->
+                        </li>
                         @endguest
+{{--                        <li role="presentation" class="dropdown">--}}
+{{--                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"--}}
+{{--                               aria-expanded="false">--}}
+{{--                                <i class="fa fa-envelope-o"></i>--}}
+{{--                                <span class="badge bg-green">6</span>--}}
+{{--                            </a>--}}
+{{--                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">--}}
+{{--                                <li>--}}
+{{--                                    <a>--}}
+{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
+{{--                                                                 alt="Profile Image"/></span>--}}
+{{--                                        <span>--}}
+{{--                          <span>مرتضی کریمی</span>--}}
+{{--                          <span class="time">3 دقیقه پیش</span>--}}
+{{--                        </span>--}}
+{{--                                        <span class="message">--}}
+{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
+{{--                        </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a>--}}
+{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
+{{--                                                                 alt="Profile Image"/></span>--}}
+{{--                                        <span>--}}
+{{--                          <span>مرتضی کریمی</span>--}}
+{{--                          <span class="time">3 دقیقه پیش</span>--}}
+{{--                        </span>--}}
+{{--                                        <span class="message">--}}
+{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
+{{--                        </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a>--}}
+{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
+{{--                                                                 alt="Profile Image"/></span>--}}
+{{--                                        <span>--}}
+{{--                          <span>مرتضی کریمی</span>--}}
+{{--                          <span class="time">3 دقیقه پیش</span>--}}
+{{--                        </span>--}}
+{{--                                        <span class="message">--}}
+{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
+{{--                        </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a>--}}
+{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
+{{--                                                                 alt="Profile Image"/></span>--}}
+{{--                                        <span>--}}
+{{--                          <span>مرتضی کریمی</span>--}}
+{{--                          <span class="time">3 دقیقه پیش</span>--}}
+{{--                        </span>--}}
+{{--                                        <span class="message">--}}
+{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
+{{--                        </span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <div class="text-center">--}}
+{{--                                        <a>--}}
+{{--                                            <strong>مشاهده تمام اعلان ها</strong>--}}
+{{--                                            <i class="fa fa-angle-right"></i>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
                     </ul>
-                </div>
+                </nav>
             </div>
-        </nav>
+        </div>
+        <!-- /top navigation -->
+        <!-- /header content -->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <!-- page content -->
+        <div class="right_col main_col" role="main">
+            <div class="">
+                @yield('content')
+            </div>
+        </div>
+        <!-- /page content -->
+
+
+        <!-- footer content -->
+        <footer class="hidden-print">
+            <div class="pull-left">
+                توسعه یافته توسط علی کاملی - وب اپلیکیشن Eragon
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
     </div>
+</div>
+<div id="lock_screen">
+    <table>
+        <tr>
+            <td>
+                <div class="clock"></div>
+                <span class="unlock">
+                    <span class="fa-stack fa-5x">
+                      <i class="fa fa-square-o fa-stack-2x fa-inverse"></i>
+                      <i id="icon_lock" class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+@include('layouts.footer')
+<script>
+    $(document).ready(function () {
+
+        $(".login-modal-sm").on("click",".login-btn", function(event) {
+            event.preventDefault();
+            //alert(sdate.toString("yyyy-MM-dd HH:mm:ss"));
+            var username = $(".login-modal-sm #username").val();
+            var password = $(".login-modal-sm #password").val();
+            $("#login-error").hide();
+            $("#login-success").hide();
+            $("#login-loading").show();
+            $.ajax({
+                type: "POST",
+                url: "/login",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    username: username,
+                    password: password,
+                },
+                success: function(data){
+                    if(data.success==false){
+                        $("#login-loading").hide();
+                        $("#login-error").html(data.error);
+                        $("#login-error").show();
+                    } else if(data.success==true){
+                        $("#login-loading").hide();
+                        $("#login-error").hide();
+                        $("#login-success").show();
+                        sleep(1000);
+                        window.location.replace("/");
+                    }
+                },error: function (reject) {
+
+                }
+            });
+            return false;
+        });
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    });
+
+</script>
 </body>
 </html>
