@@ -39,7 +39,8 @@
                             @endif
                         </div>
                         <div>
-                            <input type="text" data-jdp id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد" oninvalid="this.setCustomValidity('لطفاً تاریخ تولد خود را وارد کنید')" oninput="this.setCustomValidity('')" value="{{old('birthDate')}}"/>
+                            <label>تاریخ تولد (حداقل سن عضویت 10 سال) :</label>
+                            <input type="text" data-jdp data-jdp-max-date="{{jdate('today - 10 year')->format('Y/m/d')}}" value="{{jdate('today - 10 year')->format('Y/m/d')}}" id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد" oninvalid="this.setCustomValidity('لطفاً تاریخ تولد خود را وارد کنید')" oninput="this.setCustomValidity('')" value="{{old('birthDate')}}"/>
                             @if ($errors->has('birthDate'))
                                 <h5><span class="text-danger">{{$errors->first('birthDate')}}</span></h5>
                             @endif
@@ -149,7 +150,7 @@
 
                         <div class="separator">
                             <p class="change_link">در حال حاضر عضو هستید؟
-                                <a href="#signin" class="to_register"> ورود </a>
+                                <a href="/" class="to_register"> ورود </a>
                             </p>
 
                             <div class="clearfix"></div>
@@ -163,7 +164,9 @@
     <script type="text/javascript" src="{{asset('vendors/jdatepicker/jalalidatepicker.js')}}"></script>
     <script type="text/javascript" src="{{asset('vendors/jquery/dist/jquery.js')}}"></script>
     <script>
-        jalaliDatepicker.startWatch();
+        jalaliDatepicker.startWatch({
+            maxDate: "attr",
+        });
         function Func(city) {
             var _city = document.getElementById("city");
             _city.options.length = 0;

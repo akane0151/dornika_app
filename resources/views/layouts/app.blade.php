@@ -24,7 +24,13 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="{{asset('build/images/img.jpg')}}" alt="">{{Auth::user()->first_name.' '.Auth::user()->last_name}}
+                                @if(Auth::user()->avatar!=null)
+                                    <img src="{{asset('avatars/'.Auth::user()->avatar)}}" alt="">
+                                @else
+                                    <img src="{{asset('avatars/nonavatar.png')}}" alt="">
+                                @endif
+
+                                {{Auth::user()->first_name.' '.Auth::user()->last_name}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

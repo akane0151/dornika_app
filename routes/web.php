@@ -46,5 +46,7 @@ Route::prefix('user')->middleware("auth")->group(function () {
     Route::get('/verify', [App\Http\Controllers\UserController::class, 'verifyForm']);
     Route::post('/verify', [App\Http\Controllers\UserController::class, 'verifyUser']);
     Route::get('/panel', [App\Http\Controllers\UserController::class, 'panel']);
-
+    Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile']);
+    Route::get('/editProfile', [App\Http\Controllers\UserController::class, 'editProfileForm']);
+    Route::post('/editProfile', [App\Http\Controllers\UserController::class, 'editProfile'])->name('editProfile');
 });
