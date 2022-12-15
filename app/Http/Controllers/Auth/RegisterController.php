@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\nationalId;
+use Intervention\Image\Facades\Image;
 
 class RegisterController extends Controller
 {
@@ -79,10 +80,13 @@ class RegisterController extends Controller
     {
         $avatarName = null;
             if(request()->hasfile('avatar')){
-
+                $img = request()->avatar;
                 $avatarName = request()->last_name.'_'.time().'.'.request()->avatar->getClientOriginalExtension();
-
-                request()->avatar->move(public_path('avatars'), $avatarName);
+                $imgFile = Image::make($img->getRealPath());
+                $imgFile->resize(400, 400, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save(public_path('avatars400x400').'/'.$avatarName);
+                //request()->avatar->move(public_path('avatars'), $avatarName);
 
             }
           $user =  User::create([
