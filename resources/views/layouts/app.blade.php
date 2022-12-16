@@ -25,7 +25,7 @@
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
                                 @if(Auth::user()->avatar!=null)
-                                    <img src="{{asset('avatars/'.Auth::user()->avatar)}}" alt="">
+                                    <img src="{{asset('avatars400x400/'.Auth::user()->avatar)}}" alt="">
                                 @else
                                     <img src="{{asset('avatars/nonavatar.png')}}" alt="">
                                 @endif
@@ -34,7 +34,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/profile"> پروفایل</a></li>
+                                <li><a href="/user/profile"> پروفایل</a></li>
                                 <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
                             </ul>
                         </li>
@@ -80,75 +80,6 @@
                             <!-- /modals -->
                         </li>
                         @endguest
-{{--                        <li role="presentation" class="dropdown">--}}
-{{--                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"--}}
-{{--                               aria-expanded="false">--}}
-{{--                                <i class="fa fa-envelope-o"></i>--}}
-{{--                                <span class="badge bg-green">6</span>--}}
-{{--                            </a>--}}
-{{--                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">--}}
-{{--                                <li>--}}
-{{--                                    <a>--}}
-{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
-{{--                                                                 alt="Profile Image"/></span>--}}
-{{--                                        <span>--}}
-{{--                          <span>مرتضی کریمی</span>--}}
-{{--                          <span class="time">3 دقیقه پیش</span>--}}
-{{--                        </span>--}}
-{{--                                        <span class="message">--}}
-{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
-{{--                        </span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a>--}}
-{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
-{{--                                                                 alt="Profile Image"/></span>--}}
-{{--                                        <span>--}}
-{{--                          <span>مرتضی کریمی</span>--}}
-{{--                          <span class="time">3 دقیقه پیش</span>--}}
-{{--                        </span>--}}
-{{--                                        <span class="message">--}}
-{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
-{{--                        </span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a>--}}
-{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
-{{--                                                                 alt="Profile Image"/></span>--}}
-{{--                                        <span>--}}
-{{--                          <span>مرتضی کریمی</span>--}}
-{{--                          <span class="time">3 دقیقه پیش</span>--}}
-{{--                        </span>--}}
-{{--                                        <span class="message">--}}
-{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
-{{--                        </span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a>--}}
-{{--                                        <span class="image"><img src="{{asset('build/images/img.jpg')}}"--}}
-{{--                                                                 alt="Profile Image"/></span>--}}
-{{--                                        <span>--}}
-{{--                          <span>مرتضی کریمی</span>--}}
-{{--                          <span class="time">3 دقیقه پیش</span>--}}
-{{--                        </span>--}}
-{{--                                        <span class="message">--}}
-{{--                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....--}}
-{{--                        </span>--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <div class="text-center">--}}
-{{--                                        <a>--}}
-{{--                                            <strong>مشاهده تمام اعلان ها</strong>--}}
-{{--                                            <i class="fa fa-angle-right"></i>--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
                     </ul>
                 </nav>
             </div>

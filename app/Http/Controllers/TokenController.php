@@ -3,52 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Mail\MailNotify;
 use App\Models\User;
 use App\Models\VerifyToken;
 use App\Rules\nationalId;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 
-class UserController extends Controller
+class TokenController extends Controller
 {
-    //show verify form if user still unverified
-    public function verifyForm(){
-        if(!Auth::user()->verified){
-            return view("auth.verification");
-        }else{
-            return redirect("/user/panel");
-        }
-    }
-    //verify user
-    public function verifyUser(Request $request){
+    //resend token
+    public function resendToken(Request $request){
         $validator = \Validator::make($request->all(), [
-            'token' => ['required', 'string', 'max:8'],
-
+            'email' => ['required', 'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', 'email', 'max:255'],
         ]);
         if ($validator->fails())
         {
             return redirect()->back()->withErrors($validator);
         }
-        $user = Auth::user();
-        $original_token = VerifyToken::where("userId",$user->id)->first();
-
-        if(!Auth::user()->verified&&$original_token){
-            if($original_token->token==$request->post("token")){
-                $user->update([
-                    "verified"=>true
-                ]);
-            }else{
-                return back()
-                    ->withErrors(['msg'=>"کد تایید نامعتیر!"]);
-            }
-            return redirect("/");
+        $user = User::where("id",Auth::user()->id)->first();
+        if($user->email==$request->post("email")){
+            //token generate for verification
+            $token = substr(str_shuffle("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+            //get last token
+            $tokenRecord = VerifyToken::where("userId",$user->id)->first();
+            //token insert in its table for checking
+            $tokenRecord->update([
+                "token"=>$token
+            ]);
+            //mail to user the token for verification
+            Mail::to($user)->send(new MailNotify($token,$user->id));
+            return response()->json(['success'=>true,"msg"=>$user->id]);
         }else{
-            return redirect("/");
+            return response()->json(['success'=>false,"error"=>"حساب کاربر نامعتبر، لطفاً با پشتیبانی تماس بگیرید!"]);
         }
     }
     //show user panel after login or verification

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\nationalId;
 use Intervention\Image\Facades\Image;
+use Morilog\Jalali\Jalalian;
 
 class RegisterController extends Controller
 {
@@ -61,9 +62,9 @@ class RegisterController extends Controller
             'mobileNumber' => ['required', 'regex:/^09[0-9]{9}$/'],
             'gender' => ['required', 'string', 'max:6'],
             'vState' => ['nullable', 'string', 'max:3'],
-            'birthDate' => ['nullable','string', 'max:12'],
+            'birthDate' => ['nullable','regex:/^\d{4}\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/', 'max:12'],
             'avatar' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
-            'username' => ['required', 'regex:/^[a-zA-Z]/', 'max:32','unique:users'],
+            'username' => ['required', 'regex:/^(?=.{8,20}$)(?![_.0-9])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/', 'max:20','unique:users'],
             'email' => ['required', 'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8','max:16', 'confirmed'],
             'state' => ['nullable','string', 'max:64'],
@@ -95,8 +96,8 @@ class RegisterController extends Controller
                 'nationalId' => $data['nationalId'],
                 'mobileNumber' => $data['mobileNumber'],
                 'gender' => $data['gender'],
-                'vState' => $data['vState'],
-                'birthDate' => $data['birthDate'],
+                'vState' => $data['gender']=='M'?$data['vState']:null,
+                'birthDate' => Jalalian::fromFormat('Y/m/d',$data['birthDate'])->toCarbon(),
                 'avatar' => $avatarName,
                 'username' => $data['username'],
                 'state' => $data['state'],

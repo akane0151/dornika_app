@@ -40,7 +40,7 @@
                         </div>
                         <div>
                             <label>تاریخ تولد (حداقل سن عضویت 10 سال) :</label>
-                            <input type="text" data-jdp data-jdp-max-date="{{jdate('today - 10 year')->format('Y/m/d')}}" value="{{jdate('today - 10 year')->format('Y/m/d')}}" id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد" oninvalid="this.setCustomValidity('لطفاً تاریخ تولد خود را وارد کنید')" oninput="this.setCustomValidity('')" value="{{old('birthDate')}}"/>
+                            <input type="text" data-jdp data-jdp-max-date="{{jdate('today - 10 year')->format('Y/m/d')}}" value="{{old("birthDate")? old("birthDate"):jdate('today - 10 year')->format('Y/m/d')}}" id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد" oninvalid="this.setCustomValidity('لطفاً تاریخ تولد خود را وارد کنید')" oninput="this.setCustomValidity('')"/>
                             @if ($errors->has('birthDate'))
                                 <h5><span class="text-danger">{{$errors->first('birthDate')}}</span></h5>
                             @endif
@@ -119,6 +119,7 @@
                         </div>
                         <hr>
                         <div>
+                            <label class="control-label">نام کاربری(حداقل 8 کاراکتر با حروف لاتین و عدد)</label>
                             <input type="text" id="username" name="username" class="form-control" placeholder="نام کاربری" required="" oninvalid="this.setCustomValidity('لطفاً نام کاربری با حروف لاتین وارد کنید')" oninput="this.setCustomValidity('')" value="{{old('username')}}"/>
                             @if ($errors->has('username'))
                                 <h5><span class="text-danger">{{$errors->first('username')}}</span></h5>
@@ -166,6 +167,7 @@
     <script>
         jalaliDatepicker.startWatch({
             maxDate: "attr",
+            time: false,
         });
         function Func(city) {
             var _city = document.getElementById("city");

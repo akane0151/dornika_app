@@ -45,6 +45,9 @@ Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 Route::prefix('user')->middleware("auth")->group(function () {
     Route::get('/verify', [App\Http\Controllers\UserController::class, 'verifyForm']);
     Route::post('/verify', [App\Http\Controllers\UserController::class, 'verifyUser']);
+    Route::post('/resendToken', [App\Http\Controllers\TokenController::class, 'resendToken']);
+});
+Route::prefix('user')->middleware(["auth","verified"])->group(function () {
     Route::get('/panel', [App\Http\Controllers\UserController::class, 'panel']);
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile']);
     Route::get('/editProfile', [App\Http\Controllers\UserController::class, 'editProfileForm']);

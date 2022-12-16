@@ -15,8 +15,12 @@
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view"
-                                         src="{{asset("/avatars/".Auth::user()->avatar)}}"
+                                    <img class="img-responsive avatar-view" width="250"
+                                    @if(Auth::user()->avatar!=null)
+                                        src="{{asset('avatars400x400/'.Auth::user()->avatar)}}"
+                                    @else
+                                        src="{{asset('avatars/nonavatar.png')}}"
+                                    @endif
                                          alt="Avatar"
                                          title="Change the avatar">
                                 </div>
@@ -40,32 +44,5 @@
                 </div>
             </div>
         </div>
-            <script type="text/javascript" src="{{asset('vendors/jdatepicker/jalalidatepicker.js')}}"></script>
-            <script>
-                jalaliDatepicker.startWatch({
-                    maxDate: "attr",
-                });
-                function Func(city) {
-                    var _city = document.getElementById("city");
-                    _city.options.length = 0;
-                    if(city != "") {
-                        var arr = city.split(",");
-                        for(i = 0; i < arr.length; i++) {
-                            if(arr[i] != "") {
-                                _city.options[_city.options.length]=new Option(arr[i],arr[i]);
-                            }
-                        }
-                    }
-                }
-                function genderChange(g){
-                    if(g=="M")
-                    {
-                        $("#nState").show();
-                    }
-                    else
-                    {
-                        $("#nState").hide();
-                    }
-                }
-            </script>
+
 @endsection
