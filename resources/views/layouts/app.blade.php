@@ -81,6 +81,11 @@
                         </li>
                         @endguest
                     </ul>
+                    <ul class="nav navbar-nav navbar-left">
+                            <li>
+                                <a href="/">صفحه اصلی</a>
+                            </li>
+                    </ul>
                 </nav>
             </div>
         </div>
