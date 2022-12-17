@@ -7,8 +7,6 @@
         <br/>
         <h4>کد تایید: {{$token}}</h4>
         <br/>
-        <a href="{{'http://localhost:8000/'.$userId.'/verification'}}" style="padding: 10px;background-color:#00897b;color: white;">لینک</a>
-        <br/>
         <hl/>
     </p>
     <p style="text-align: center;background-color:#cccccc;">
