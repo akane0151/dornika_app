@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
+use Morilog\Jalali\Jalalian;
 
 class UserController extends Controller
 {
@@ -95,7 +96,7 @@ class UserController extends Controller
             'mobileNumber' => $request->post("mobileNumber"),
             'gender' => $request->post("gender"),
             'vState' => $request->post("vState"),
-            'birthDate' => $request->post("birthDate"),
+            'birthDate' => Jalalian::fromFormat('Y/m/d',$request->post('birthDate'))->toCarbon(),
             'avatar' => $avatarName!=null?$avatarName:$user->avatar,
             'username' => $request->post("username"),
             'state' => $request->post("state"),
