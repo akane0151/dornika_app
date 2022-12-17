@@ -34,7 +34,9 @@ Auth::routes();
 //    Route::post('/editPerm', [App\Http\Controllers\PermissionController::class, 'editRole'])->name("editPerm");
 //    Route::post('/removePerm', [App\Http\Controllers\PermissionController::class, 'removeRole'])->name("removePerm");
 //});
-
+Route::get('/login',function (){
+    return redirect("/");
+});
 Route::get('/', function (){
     return redirect("/home");
 })->name("home");
