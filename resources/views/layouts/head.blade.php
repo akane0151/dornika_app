@@ -21,3 +21,6 @@
     <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap -->
     <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
+    <link href="{{asset('vendors/jdatepicker/jalalidatepicker.css')}}" rel="stylesheet">
+
