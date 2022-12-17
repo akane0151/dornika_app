@@ -54,7 +54,7 @@
                                 </div>
                                 <div>
                                     <label>تاریخ تولد (حداقل سن عضویت 10 سال) :</label>
-                                    <input type="text" data-jdp data-jdp-max-date="{{jdate('today - 10 year')->format('Y/m/d')}}" value="{{jdate(Auth::user()->birthDate)->format('Y-m-d')}}" id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد" oninvalid="this.setCustomValidity('لطفاً تاریخ تولد خود را وارد کنید')" oninput="this.setCustomValidity('')"/>
+                                    <input type="text" data-jdp data-jdp-max-date="{{jdate('today - 10 year')->format('Y/m/d')}}" value="{{jdate(strtotime(Auth::user()->birthDate))->format('Y/m/d')}}" id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد" oninvalid="this.setCustomValidity('لطفاً تاریخ تولد خود را وارد کنید')" oninput="this.setCustomValidity('')"/>
                                     @if ($errors->has('birthDate'))
                                         <h5><span class="text-danger">{{$errors->first('birthDate')}}</span></h5>
                                     @endif
