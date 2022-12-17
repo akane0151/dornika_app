@@ -35,7 +35,7 @@ class UpdateUserRequest extends FormRequest
             'mobileNumber' => ['required', 'regex:/^09[0-9]{9}$/'],
             'gender' => ['required', 'string', 'max:6'],
             'vState' => ['nullable', 'string', 'max:3'],
-            'birthDate' => ['nullable','string', 'max:12'],
+            'birthDate' => ['nullable','regex:/^\d{4}\/(0[1-9]|1[012])\/(0[1-9]|[12][0-9]|3[01])$/', 'max:12'],
             'avatar' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
             'username' => ['required', 'regex:/^(?=.{8,20}$)(?![_.0-9])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/', 'max:32',Rule::unique('users')->ignore(Auth::user()->id)],
             'email' => ['required', 'regex:/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}/', 'email', 'max:255',Rule::unique('users')->ignore(Auth::user()->id)],
