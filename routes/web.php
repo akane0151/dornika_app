@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
+Route::get('/reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
 //Route::prefix('admin')->middleware("admin")->group(function () {
 //    Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
 //    Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);

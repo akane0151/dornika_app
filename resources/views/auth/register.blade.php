@@ -143,6 +143,18 @@
                                 <h5><span class="text-danger">{{$errors->first('password_confirmation')}}</span></h5>
                             @endif
                         </div>
+                        <div class="captcha">
+                            <span>{!! captcha_img() !!}</span>
+                            <button type="button" class="btn btn-danger" class="reload" id="reload">
+                                &#x21bb;
+                            </button>
+                        </div>
+                        <div>
+                            <input id="captcha" type="text" class="form-control" placeholder="کد امنیتی" name="captcha">
+                            @if ($errors->has('captcha'))
+                                <h5><span class="text-danger">{{$errors->first('captcha')}}</span></h5>
+                            @endif
+                        </div>
                         <div>
                             <button class="btn btn-default submit" type="submit">ارسال</button>
                         </div>
@@ -191,5 +203,14 @@
                 $("#nState").hide();
             }
         }
+        $('#reload').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'reload-captcha',
+                success: function (data) {
+                    $(".captcha span").html(data.captcha);
+                }
+            });
+        });
     </script>
 @endsection

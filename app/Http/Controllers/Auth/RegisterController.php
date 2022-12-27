@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8','max:16', 'confirmed'],
             'state' => ['nullable','string', 'max:64'],
             'city' => ['nullable','string', 'max:64'],
+            'captcha' => ['required', 'captcha']
         ]);
     }
     /**
@@ -117,4 +118,5 @@ class RegisterController extends Controller
 
           return $user;
     }
+
 }
