@@ -35,12 +35,12 @@ return [
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'smtp',
+            'transport' => 'sendmail',
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 465),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('akane0151@gmail.com'),
-            'password' => env('tlcwjazanlwazhxw'),
+            'password' => env('sgbmusseiuxbrasz'),
             'timeout' => null,
             'auth_mode' => null,
         ],

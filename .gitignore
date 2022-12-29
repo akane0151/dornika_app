@@ -5,6 +5,7 @@
 /vendor
 /config/database.php
 /config/app.php
+/config/mail.php
 .env
 .env.backup
 .phpunit.result.cache

@@ -180,7 +180,6 @@ return [
         "attributes" => "مشخصات",
         "tag" => "تگ",
         "price" => "قیمت",
-        "datasheet_file" => "فایل دیتاشیت",
         "avatar" => "تصویر پروفایل",
         "available" => "وضعیت",
         "attachment" => "فایل ضمیمه",
@@ -202,7 +201,8 @@ return [
         "time" => "زمان",
         "serial" => "ُسریال محصول",
         "size" => "اندازه",
-        "token"=>"کد"
+        "token"=>"کد",
+        "validation.captcha"=>"کد امنیتی نامعتبر!"
     ],
 
 ];
