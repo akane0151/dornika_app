@@ -21,7 +21,7 @@
         <!-- footer content -->
         <footer class="hidden-print">
             <div class="pull-left">
-                <p>سامانه پنل مدیریت eragon نسخه 0.5.5</p>
+                <p>سامانه پنل مدیریت dornika نسخه 0.6</p>
             </div>
             <div class="clearfix"></div>
         </footer>

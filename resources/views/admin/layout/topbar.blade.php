@@ -10,7 +10,7 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                        aria-expanded="false">
-                        <img src="{{asset('build/images/img.jpg')}}" alt="">{{$user->full_name}}
+                        <img src="{{asset('build/images/img.jpg')}}" alt="">{{Auth::guard("admin")->user()->full_name}}
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">

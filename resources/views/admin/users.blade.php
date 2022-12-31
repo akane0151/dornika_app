@@ -35,10 +35,9 @@
                         <tr>
                             <th><input type="checkbox" id="check-all" class="flat"></th>
                             <th>نام</th>
-                            <th>نقش کاربر</th>
-                            <th>شماره تماس</th>
                             <th>استان</th>
                             <th>شهر</th>
+                            <th>شماره همراه</th>
                             <th>جزئیات</th>
                         </tr>
                         </thead>
@@ -46,14 +45,12 @@
                         @foreach($users as $u)
                             <tr>
                                 <td>
-{{--                                    <input type="checkbox" class="flat" name="table_records">--}}
                                 {{$u->id}}
                                 </td>
-                                <td>{{$u->full_name}}</td>
-                                <td>---</td>
-                                <td>{{$u->phoneNumber}}</td>
-                                <td>---</td>
-                                <td>---</td>
+                                <td>{{$u->first_name.' '.$u->last_name}}</td>
+                                <td>{{$u->state}}</td>
+                                <td>{{$u->city}}</td>
+                                <td>{{$u->mobileNumber}}</td>
                                 <td>
                                     <button class="btn btn-info btn-xs">جزئیات</button>
                                 </td>

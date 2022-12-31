@@ -26,6 +26,10 @@
     <link href="{{asset('vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <!-- Custom Theme Style -->
     <link href="{{asset('build/css/custom.min.css')}}" rel="stylesheet">
 </head>

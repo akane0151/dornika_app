@@ -13,7 +13,7 @@
             </div>
             <div class="profile_info">
                 <span>خوش آمدید,</span>
-                <h2>{{$user->full_name}}</h2>
+                <h2>{{Auth::guard("admin")->user()->full_name}}</h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -29,7 +29,8 @@
                         <ul class="nav child_menu">
                             <li><a href="/admin/dashboard">داشبورد</a></li>
                             <li><a href="/admin/users">کاربران</a></li>
-                            <li><a href="/admin/goods">کالا</a></li>
+                            <li><a href="/admin/states">استان ها</a></li>
+                            <li><a href="/admin/cities">شهر ها</a></li>
                             <li><a href="/admin/roles">نقش ها</a></li>
                             <li><a href="/admin/permissions">دسترسی ها</a></li>
                         </ul>

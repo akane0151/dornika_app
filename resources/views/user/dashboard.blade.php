@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="fontiran.com:license" content="Y68A9">
     <link rel="icon" href="{{asset('build/images/favicon.ico')}}" type="image/ico"/>
-    <title>Gentelella Alela! | قالب مدیریت رایگان </title>
+    <title>{{config('app.name')}}</title>
 
     <!-- Bootstrap -->
     <link href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">

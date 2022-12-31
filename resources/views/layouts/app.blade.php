@@ -20,26 +20,44 @@
             <div class="nav_menu">
                 <nav>
                     <ul class="nav navbar-nav navbar-right">
-                        @auth
-                        <li class="">
+                        @if(Auth::guard('admin')->check())
+                            <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                @if(Auth::user()->avatar!=null)
-                                    <img src="{{asset('avatars400x400/'.Auth::user()->avatar)}}" alt="">
-                                @else
-                                    <img src="{{asset('avatars/nonavatar.png')}}" alt="">
-                                @endif
 
-                                {{Auth::user()->first_name.' '.Auth::user()->last_name}}
+                                    <img src="{{asset('avatars/nonavatar.png')}}" alt="">
+
+                                {{Auth::guard('admin')->user()->full_name}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/user/profile"> پروفایل</a></li>
-                                <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
+                                <li><a href="/admin/profile"> پروفایل</a></li>
+                                <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
                             </ul>
                         </li>
-                        @endauth
-                        @guest
+                            <li class="">
+                                <a href="/admin/dashboard">پنل مدیریت
+                                </a>
+                            </li>
+                        @elseif(Auth::guard('user')->check())
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                   aria-expanded="false">
+                                    @if(Auth::guard('user')->user()->avatar!=null)
+                                        <img src="{{asset('avatars400x400/'.Auth::user()->avatar)}}" alt="">
+                                    @else
+                                        <img src="{{asset('avatars/nonavatar.png')}}" alt="">
+                                    @endif
+
+                                    {{Auth::guard('user')->user()->first_name.' '.Auth::guard('user')->user()->last_name}}
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="/user/profile"> پروفایل</a></li>
+                                    <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
+                                </ul>
+                            </li>
+                        @else
                         <li>
                            <button class="btn btn-default" data-toggle="modal"
                                    data-target=".login-modal-sm" style="margin: 10px;">ورود/ثبت نام</button>
@@ -79,7 +97,7 @@
                             </div>
                             <!-- /modals -->
                         </li>
-                        @endguest
+                            @endif
                     </ul>
                     <ul class="nav navbar-nav navbar-left">
                             <li>
