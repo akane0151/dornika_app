@@ -185,7 +185,7 @@
                         $("#modal-error").hide();
                         $("#modal-success").show();
                         sleep(1000);
-                        window.location.replace("states");
+                        window.location.replace("cities");
                     }
                 },error: function (reject) {
 
@@ -219,7 +219,7 @@
                         $(".edit-modal-sm #modal-error").hide();
                         $(".edit-modal-sm #modal-success").show();
                         sleep(1000);
-                        window.location.replace("states");
+                        window.location.replace("cities");
                     }
                 },error: function (reject) {
 
@@ -246,7 +246,7 @@
                         $(".remove-modal-sm #modal-error").hide();
                         $(".remove-modal-sm #modal-success").show();
                         sleep(1000);
-                        window.location.replace("states");
+                        window.location.replace("cities");
                     }
                 },error: function (reject) {
 
