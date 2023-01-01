@@ -31,8 +31,8 @@
                             <li><a href="/admin/users">کاربران</a></li>
                             <li><a href="/admin/states">استان ها</a></li>
                             <li><a href="/admin/cities">شهر ها</a></li>
-                            <li><a href="/admin/roles">نقش ها</a></li>
-                            <li><a href="/admin/permissions">دسترسی ها</a></li>
+                            <li><a href="#">نقش ها</a></li>
+                            <li><a href="#">دسترسی ها</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-gear"></i> تنظیمات <span class="fa fa-chevron-down"></span></a>

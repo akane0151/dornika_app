@@ -10,16 +10,16 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                        aria-expanded="false">
-                        <img src="{{asset('build/images/img.jpg')}}" alt="">{{Auth::guard("admin")->user()->full_name}}
+                        <img src="{{asset('avatars/nonavatar.png')}}" alt="">{{Auth::guard("admin")->user()->full_name}}
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li>
-                            <a href="/admin/settings">
-                                <span>تنظیمات</span>
-                            </a>
-                        </li>
-                        <li><a href="/admin/profile">حساب</a></li>
+{{--                        <li>--}}
+{{--                            <a href="/admin/settings">--}}
+{{--                                <span>تنظیمات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+                        <li><a href="#">حساب</a></li>
                         <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
                     </ul>
                 </li>
