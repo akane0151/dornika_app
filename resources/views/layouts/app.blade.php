@@ -39,17 +39,17 @@
                                 <a href="/admin/dashboard">پنل مدیریت
                                 </a>
                             </li>
-                        @elseif(Auth::guard('user')->check())
+                        @elseif(Auth::guard('web')->check())
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                    aria-expanded="false">
-                                    @if(Auth::guard('user')->user()->avatar!=null)
+                                    @if(Auth::guard('web')->user()->avatar!=null)
                                         <img src="{{asset('avatars400x400/'.Auth::user()->avatar)}}" alt="">
                                     @else
                                         <img src="{{asset('avatars/nonavatar.png')}}" alt="">
                                     @endif
 
-                                    {{Auth::guard('user')->user()->first_name.' '.Auth::guard('user')->user()->last_name}}
+                                    {{Auth::guard('web')->user()->first_name.' '.Auth::guard('web')->user()->last_name}}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
