@@ -15,6 +15,7 @@ class Admin extends Authenticatable
 
     protected $table = 'admins';
     protected $guard = 'admin';
+    public $guard_name = 'admin';
     /**
      * The attributes that are mass assignable.
      *
@@ -22,10 +23,9 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'full_name',
-        'nationalId',
-        'mobileNumber',
-        'second_mobileNumber',
-        'password',
+        'email',
+        'username',
+        'password'
     ];
 
     /**
@@ -46,4 +46,5 @@ class Admin extends Authenticatable
     protected $casts = [
 
     ];
+
 }

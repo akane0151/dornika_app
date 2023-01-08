@@ -28,11 +28,18 @@
                     <li><a><i class="fa fa-dashboard"></i> مدیریت <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="/admin/dashboard">داشبورد</a></li>
+                            @if(Auth::guard('admin')->user()->can('edit-users'))
                             <li><a href="/admin/users">کاربران</a></li>
+                            @endif
+                            @if(Auth::guard('admin')->user()->can('manage-geo'))
                             <li><a href="/admin/states">استان ها</a></li>
+                            @endif
+                            @if(Auth::guard('admin')->user()->can('manage-geo'))
                             <li><a href="/admin/cities">شهر ها</a></li>
-                            <li><a href="#">نقش ها</a></li>
-                            <li><a href="#">دسترسی ها</a></li>
+                            @endif
+                            @if(Auth::guard('admin')->user()->can('edit-roles'))
+                            <li><a href="/admin/roles">نقش ها</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li><a><i class="fa fa-gear"></i> تنظیمات <span class="fa fa-chevron-down"></span></a>

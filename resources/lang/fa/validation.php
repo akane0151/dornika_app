@@ -152,6 +152,7 @@ return [
         "email" => "آدرس ایمیل",
         "password" => "رمز عبور",
         "password_confirmation" => "تاییدیه ی رمز عبور",
+        "password_confirm" => "تاییدیه ی رمز عبور",
         "city" => "شهر",
         "state" => "استان",
         "province" => "استان",
