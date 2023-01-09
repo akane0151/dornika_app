@@ -54,6 +54,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
                                     <li><a href="/user/profile"> پروفایل</a></li>
+                                    <li><a href="/user/changePassword"> تغییر رمزعبور</a></li>
                                     <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
                                 </ul>
                             </li>

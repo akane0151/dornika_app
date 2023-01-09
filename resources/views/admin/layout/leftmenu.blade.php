@@ -40,12 +40,15 @@
                             @if(Auth::guard('admin')->user()->can('edit-roles'))
                             <li><a href="/admin/roles">نقش ها</a></li>
                             @endif
+                            @if(Auth::guard('admin')->user()->can('create-admin'))
+                                <li><a href="/admin/admins">ادمین ها</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li><a><i class="fa fa-gear"></i> تنظیمات <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="/admin/pofile">حساب</a></li>
-                            <li><a href="/admin/settings">سیستم</a></li>
+{{--                            <li><a href="/admin/pofile">حساب</a></li>--}}
+{{--                            <li><a href="/admin/settings">سیستم</a></li>--}}
                         </ul>
                     </li>
                 </ul>

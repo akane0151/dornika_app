@@ -45,7 +45,11 @@
                                 <td>{{$a->email}}</td>
                                 <td>{{$a->role}}</td>
                                 <td>
-                                    <a href="/admin/edit/{{$a->id}}" class="btn btn-info btn-xs">جزئیات</a>
+                                    @if(Auth::guard('admin')->user()->can('edit-admin'))
+                                    <a href="/admin/edit/{{$a->id}}" class="btn btn-info btn-xs">ویرایش</a>
+                                        <a href="/admin/changePassword/{{$a->id}}" class="btn btn-info btn-xs">تغییر رمزعبور</a>
+                                    @endif
+
                                 </td>
                             </tr>
                         @endforeach

@@ -19,7 +19,7 @@
 {{--                                <span>تنظیمات</span>--}}
 {{--                            </a>--}}
 {{--                        </li>--}}
-                        <li><a href="#">حساب</a></li>
+                        <li><a href="/admin/changePassword">تغییر رمزعبور</a></li>
                         <li><a href="/admin/logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
                     </ul>
                 </li>

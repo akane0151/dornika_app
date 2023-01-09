@@ -9,6 +9,7 @@ use App\Rules\nationalId;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -105,6 +106,36 @@ class UserController extends Controller
         ]);
         return back()
             ->with('success', 'اطلاعات بروزرسانی شد!');
+    }
+    public function changePassword(){
+        return view("user.myPassword");
+    }
+    public function editMyUserPassword(Request $request){
+        $validateData = $request->validate([
+            'password' => ['required', 'string','min:8', 'max:32'],
+            'password_confirm' => ['required', 'string','min:8', 'max:32'],
+        ]);
+        try{
+            if($request->post('password')==$request->post('password_confirm'))
+            {
+                $my = Auth::user();
+                if($my){
+                    $my->update([
+                        'password' => Hash::make($request->post("password")),
+                    ]);
+                    return back()->with('success', 'اطلاعات بروزرسانی شد!');
+                }else{
+                    return back()->with("error","خطایی رخ داده!");
+                }
+            }
+            else
+            {
+                return back()->with("error","رمزعبور با تکرار آن همخوانی ندارد!");
+            }
+        }
+        catch (\Exception $e){
+            return back()->with("error",$e->getMessage());
+        }
     }
     /**
      * Log out account user.

@@ -21,11 +21,26 @@ Route::get('/reload-captcha', [App\Http\Controllers\CaptchaController::class, 'r
 Route::prefix('admin')->middleware("admin")->group(function () {
     Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);
+    Route::get('/changePassword', [App\Http\Controllers\AdminController::class, 'changePassword']);
+    Route::post('/editMyAdminPassword', [App\Http\Controllers\AdminController::class, 'editMyAdminPassword'])->name("editMyAdminPassword");
 
-    Route::get('/admins', [App\Http\Controllers\AdminController::class, 'admins']);
-    Route::get('/newAdminForm', [App\Http\Controllers\AdminController::class, 'newAdminForm']);
-    Route::post('/newAdmin', [App\Http\Controllers\AdminController::class, 'newAdmin'])->name('newAdmin');
-    //geo manage
+
+    //create-admin and view list of admins
+    Route::group(['middleware' => ['permission:create-admin,admin']], function () {
+        Route::get('/admins', [App\Http\Controllers\AdminController::class, 'admins']);
+        Route::get('/newAdminForm', [App\Http\Controllers\AdminController::class, 'newAdminForm']);
+        Route::post('/newAdmin', [App\Http\Controllers\AdminController::class, 'newAdmin'])->name('newAdmin');
+    });
+    //edit-admin as well as password change
+    Route::group(['middleware' => ['permission:edit-admin,admin']], function () {
+        Route::get('/edit/{id}', [App\Http\Controllers\AdminController::class, 'editAdminForm']);
+        Route::post('/editAdmin', [App\Http\Controllers\AdminController::class, 'editAdmin'])->name('editAdmin');
+        Route::get('/changePassword/{id}', [App\Http\Controllers\AdminController::class, 'getAdminPassword']);
+        Route::post('/editAdminPassword', [App\Http\Controllers\AdminController::class, 'editAdminPassword'])->name("editAdminPassword");
+    });
+
+
+    //geo manage such as add,edit,remove state and city
     Route::group(['middleware' => ['permission:manage-geo,admin']], function () {
         Route::get('/states', [App\Http\Controllers\GeoController::class, 'stateList']);
         Route::get('/cities', [App\Http\Controllers\GeoController::class, 'cityList']);
@@ -76,4 +91,7 @@ Route::prefix('user')->middleware(["auth","verified"])->group(function () {
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile']);
     Route::get('/editProfile', [App\Http\Controllers\UserController::class, 'editProfileForm']);
     Route::post('/editProfile', [App\Http\Controllers\UserController::class, 'editProfile'])->name('editProfile');
+    Route::get('/changePassword', [App\Http\Controllers\UserController::class, 'changePassword']);
+    Route::post('/editMyUserPassword', [App\Http\Controllers\UserController::class, 'editMyUserPassword'])->name("editMyUserPassword");
+
 });

@@ -38,7 +38,36 @@ class AdminController extends Controller
             $userCount = User::all()->count();
             return view("admin.dashboard",["user"=>$user,"userCount"=>$userCount]);
     }
-
+    public function changePassword(){
+        return view("admin.myPassword");
+    }
+    public function editMyAdminPassword(Request $request){
+        $validateData = $request->validate([
+            'password' => ['required', 'string','min:8', 'max:32'],
+            'password_confirm' => ['required', 'string','min:8', 'max:32'],
+        ]);
+        try{
+            if($request->post('password')==$request->post('password_confirm'))
+            {
+                $my = Auth::guard('admin')->user();
+                if($my){
+                    $my->update([
+                        'password' => Hash::make($request->post("password")),
+                    ]);
+                    return back()->with('success', 'اطلاعات بروزرسانی شد!');
+                }else{
+                    return back()->with("error","خطایی رخ داده!");
+                }
+            }
+            else
+            {
+                return back()->with("error","رمزعبور با تکرار آن همخوانی ندارد!");
+            }
+        }
+        catch (\Exception $e){
+            return back()->with("error",$e->getMessage());
+        }
+    }
     public function users(){
         $users = User::all();
         return view("admin.users",["users"=>$users]);
@@ -131,12 +160,29 @@ class AdminController extends Controller
     }
     public function admins(){
         $admins = Admin::all()->except(Auth::guard("admin")->user()->getAuthIdentifier());
-        $roles = Role::all();
         return view("admin.admins",["admins"=>$admins]);
     }
     public function newAdminForm(){
-        $roles = Role::all()->except(1);
+        if(Auth::guard('admin')->user()->hasRole('super-admin')){
+            $roles = Role::all();
+        }else{
+            $roles = Role::all()->except(1);
+        }
         return view("admin.newAdmin",["roles"=>$roles]);
+    }
+    public function editAdminForm($id){
+        if(Auth::guard('admin')->user()->hasRole('super-admin')){
+            $roles = Role::all();
+        }else{
+            $roles = Role::all()->except(1);
+        }
+        $admin = Admin::where('id',$id)->first();
+        if($admin){
+            return view("admin.editAdmin",["roles"=>$roles,"admin"=>$admin]);
+        }else{
+            return abort(404);
+        }
+
     }
     public function newAdmin(Request $request)
     {
@@ -157,6 +203,71 @@ class AdminController extends Controller
             $perms = Role::findByName($request->post("role"));
             $admin->syncPermissions($perms);
             return redirect("/admin/admins");
+        }
+        catch (\Exception $e){
+            return back()->with("error",$e->getMessage());
+        }
+    }
+    public function editAdmin(Request $request)
+    {
+        $validateData = $request->validate([
+            'id'=>['required','integer'],
+            'full_name' => ['required', 'string','max:64'],
+            'username' => ['required', 'string','max:64'],
+            'email' => ['required', 'email','max:64'],
+            'role' => ['required', 'string','max:64'],
+        ]);
+        try{
+            $admin = Admin::find($request->post('id'));
+            if($admin){
+                $admin->update(["full_name"=>$request->post("full_name"),
+                    "username"=>$request->post("username"),
+                    "email"=>$request->post("email"),
+                ]);
+                $admin->syncRoles([$request->post("role")]);
+                $perms = Role::findByName($request->post("role"));
+                $admin->syncPermissions($perms);
+                return redirect("/admin/admins");
+            }else{
+                return back()->with("error","اطلاعات کاربر مورد نظر موجود نیست!");
+            }
+
+        }
+        catch (\Exception $e){
+            return back()->with("error",$e->getMessage());
+        }
+    }
+    public function getAdminPassword($id){
+        $admin = Admin::where('id',$id)->first();
+        if($admin){
+            return view("admin.adminPassword",["admin"=>$admin]);
+        }else{
+            return abort(404);
+        }
+    }
+    public function editAdminPassword(Request $request){
+        $validateData = $request->validate([
+            'id' => ['required', 'integer', 'max:64'],
+            'password' => ['required', 'string','min:8', 'max:32'],
+            'password_confirm' => ['required', 'string','min:8', 'max:32'],
+        ]);
+        try{
+            if($request->post('password')==$request->post('password_confirm'))
+            {
+                $admin = Admin::where('id',$request->post('id'))->first();
+                if($admin){
+                    $admin->update([
+                        'password' => Hash::make($request->post("password")),
+                    ]);
+                    return back()->with('success', 'اطلاعات بروزرسانی شد!');
+                }else{
+                    return back()->with("error","خطایی رخ داده!");
+                }
+            }
+            else
+            {
+                return back()->with("error","رمزعبور با تکرار آن همخوانی ندارد!");
+            }
         }
         catch (\Exception $e){
             return back()->with("error",$e->getMessage());
