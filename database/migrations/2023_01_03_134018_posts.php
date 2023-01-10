@@ -17,7 +17,7 @@ class Posts extends Migration
             $table->id();
             $table->string('title',128);
             $table->text('content');
-            $table->boolean('eneble')->default(false);
+            $table->string('enable')->default("off");
             $table->integer('userId');
             $table->string('thumbnail',64)->default('noThumbnail.jpg');
             $table->timestamps();
