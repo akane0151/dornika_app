@@ -28,7 +28,7 @@
     <link href="{{asset('vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/jdatepicker/jalalidatepicker.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/dropify/dist/css/dropify.min.css')}}" rel="stylesheet">
-    <link href="http://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="{{asset('vendors/datatables.net/css/jquery.dataTables.min.css')}}" rel="stylesheet">
 
     <!-- jQuery -->
     <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
@@ -36,7 +36,7 @@
     <script src="{{asset('vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('vendors/tinymce/tinymce.min.js')}}"></script>
     <script src="{{asset('vendors/dropify/dist/js/dropify.min.js')}}"></script>
-    <script src="http://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 
 
     <!-- Custom Theme Style -->
