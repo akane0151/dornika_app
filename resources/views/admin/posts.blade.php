@@ -27,6 +27,7 @@
                         <tr>
                             <th>#</th>
                             <th>عنوان</th>
+                            <th>تصویر</th>
                             <th>نویسنده</th>
                             <th>وضعیت</th>
                             <th>جزئیات</th>
@@ -38,6 +39,7 @@
                                 <td>
                                 {{$p->id}}
                                 </td>
+                                <td><img src="{{asset('thumbnails/'.$p->thumbnail)}}" width="100" height="100" /> </td>
                                 <td>{{$p->title}}</td>
                                 <td>{{$p->owner->full_name}}</td>
                                 <td>{{$p->enable=="on"?'منتشر شده':'غیرفعال'}}</td>

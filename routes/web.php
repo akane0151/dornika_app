@@ -85,9 +85,8 @@ Route::get('/login',function (){
 Route::get('/', function (){
     return redirect("/home");
 })->name("home");
-Route::get('/home', function (){
-    return view("home");
-});
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'home']);
+
 Route::get('/logout', [App\Http\Controllers\UserController::class, 'logout']);
 Route::prefix('user')->middleware("auth")->group(function () {
     Route::get('/verify', [App\Http\Controllers\UserController::class, 'verifyForm']);
