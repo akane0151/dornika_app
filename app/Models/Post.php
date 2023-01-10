@@ -31,7 +31,7 @@ class Post extends Model
 
     ];
 
-    public function user(){
-        return $this->hasMany('App/User','id','userId');
+    public function owner(){
+        return $this->hasOne(Admin::class,'id','userId');
     }
 }

@@ -171,13 +171,14 @@ class AdminController extends Controller
         return view("admin.newAdmin",["roles"=>$roles]);
     }
     public function editAdminForm($id){
-        if(Auth::guard('admin')->user()->hasRole('super-admin')){
-            $roles = Role::all();
-        }else{
-            $roles = Role::all()->except(1);
-        }
         $admin = Admin::where('id',$id)->first();
-        if($admin){
+        if($admin && $admin->getRoleNames()[0]!=="super-admin"){
+            if(Auth::guard('admin')->user()->hasRole('super-admin')){
+                $roles = Role::all();
+            }else{
+                $roles = Role::all()->except(1);
+            }
+
             return view("admin.editAdmin",["roles"=>$roles,"admin"=>$admin]);
         }else{
             return abort(404);
@@ -219,7 +220,7 @@ class AdminController extends Controller
         ]);
         try{
             $admin = Admin::find($request->post('id'));
-            if($admin){
+            if($admin && $admin->getRoleNames()[0]!=="super-admin"){
                 $admin->update(["full_name"=>$request->post("full_name"),
                     "username"=>$request->post("username"),
                     "email"=>$request->post("email"),
@@ -239,7 +240,7 @@ class AdminController extends Controller
     }
     public function getAdminPassword($id){
         $admin = Admin::where('id',$id)->first();
-        if($admin){
+        if($admin && $admin->getRoleNames()[0]!=="super-admin"){
             return view("admin.adminPassword",["admin"=>$admin]);
         }else{
             return abort(404);
@@ -255,7 +256,7 @@ class AdminController extends Controller
             if($request->post('password')==$request->post('password_confirm'))
             {
                 $admin = Admin::where('id',$request->post('id'))->first();
-                if($admin){
+                if($admin && $admin->getRoleNames()[0]!=="super-admin"){
                     $admin->update([
                         'password' => Hash::make($request->post("password")),
                     ]);

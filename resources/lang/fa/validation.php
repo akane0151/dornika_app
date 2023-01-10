@@ -171,7 +171,7 @@ return [
         "legal_zipcode" => "کدپستی موسسه",
         "scan_recom" => "معرفی نامه",
         "scan_cv" => "رزومه",
-
+        "thumbnail" => "تصویر شاخص",
         "name" => "نام محصول",
         "product_model" => "مدل محصول",
         "model" => "مدل محصول",

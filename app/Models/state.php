@@ -32,6 +32,6 @@ class state extends Model
     ];
 
     public function cityList(){
-        return $this->hasMany('App/city','stateId','id');
+        return $this->hasMany(city::class,'stateId','id');
     }
 }

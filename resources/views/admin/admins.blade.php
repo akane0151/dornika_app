@@ -23,7 +23,7 @@
                     <p class="text-muted font-13 m-b-30">
 
                     </p>
-                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <table id="dt" class="table table-striped table-bordered">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -43,9 +43,9 @@
                                 <td>{{$a->full_name}}</td>
                                 <td>{{$a->username}}</td>
                                 <td>{{$a->email}}</td>
-                                <td>{{$a->role}}</td>
+                                <td>{{$a->getRoleNames()[0]}}</td>
                                 <td>
-                                    @if(Auth::guard('admin')->user()->can('edit-admin'))
+                                    @if(Auth::guard('admin')->user()->can('edit-admin')&&!$a->hasRole('super-admin'))
                                     <a href="/admin/edit/{{$a->id}}" class="btn btn-info btn-xs">ویرایش</a>
                                         <a href="/admin/changePassword/{{$a->id}}" class="btn btn-info btn-xs">تغییر رمزعبور</a>
                                     @endif
@@ -64,6 +64,13 @@
 
 </div>
 <!-- /page content -->
+<script>
+    $(document).ready(function () {
+        $('#dt').DataTable({
+            "language": dtFarsi,
+        });
+    });
+</script>
 @stop
 
 

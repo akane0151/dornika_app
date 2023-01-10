@@ -30,10 +30,10 @@
                     <p class="text-muted font-13 m-b-30">
 
                     </p>
-                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                    <table id="dt" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th><input type="checkbox" id="check-all" class="flat"></th>
+                            <th>شماره</th>
                             <th>نام</th>
                             <th>استان</th>
                             <th>شهر</th>
@@ -44,9 +44,7 @@
                         <tbody>
                         @foreach($users as $u)
                             <tr>
-                                <td>
-                                {{$u->id}}
-                                </td>
+                                <td>{{$u->id}}</td>
                                 <td>{{$u->first_name.' '.$u->last_name}}</td>
                                 <td>{{$u->state}}</td>
                                 <td>{{$u->city}}</td>
@@ -57,7 +55,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
                         </tbody>
                     </table>
                 </div>
@@ -68,6 +65,14 @@
 
 </div>
 <!-- /page content -->
+
+    <script>
+        $(document).ready(function () {
+            $('#dt').DataTable({
+                "language": dtFarsi,
+            });
+        });
+    </script>
 @stop
 
 

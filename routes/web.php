@@ -70,6 +70,14 @@ Route::prefix('admin')->middleware("admin")->group(function () {
         Route::post('/newRole', [App\Http\Controllers\RoleController::class, 'newRole'])->name("newRole");
         Route::post('/editRole', [App\Http\Controllers\RoleController::class, 'editRole'])->name("editRole");
     });
+    //posts actions
+    Route::group(['middleware' => ['permission:edit-blog-posts,admin']], function () {
+        Route::get('/posts', [App\Http\Controllers\PostController::class, 'posts'])->name("posts");
+        Route::get('/editPost/{id}', [App\Http\Controllers\PostController::class, 'editPostForm'])->name("editPostForm");
+        Route::get('/newPost', [App\Http\Controllers\PostController::class, 'newPostForm'])->middleware("permission:create-blog-posts,admin")->name("newPostForm");
+        Route::post('/newPost', [App\Http\Controllers\PostController::class, 'newPost'])->middleware("permission:create-blog-posts,admin")->name("newPost");
+        Route::post('/editPost', [App\Http\Controllers\PostController::class, 'editPost'])->name("editPost");
+    });
 });
 Route::get('/login',function (){
     return redirect("/");
