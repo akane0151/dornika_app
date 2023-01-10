@@ -65,12 +65,21 @@
 
 </div>
 <!-- /page content -->
-
+<script src="{{asset('vendors/datatables.net-buttons/js/buttons.print.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-buttons/js/buttons.html5.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-buttons/js/dataTables.buttons.js')}}"></script>
+<script src="{{asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
     <script>
         $(document).ready(function () {
-            $('#dt').DataTable({
+            var tb = $('#dt').DataTable({
                 "language": dtFarsi,
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
             });
+            tb.buttons().container()
+                .appendTo( $('.col-sm-6:eq(0)', tb.table().container() ) );
         });
     </script>
 @stop

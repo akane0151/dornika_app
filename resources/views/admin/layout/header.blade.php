@@ -29,7 +29,7 @@
     <link href="{{asset('vendors/jdatepicker/jalalidatepicker.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/dropify/dist/css/dropify.min.css')}}" rel="stylesheet">
     <link href="{{asset('vendors/datatables.net/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-
+    <link href="{{asset('vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
     <!-- jQuery -->
     <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
     <!-- Bootstrap -->

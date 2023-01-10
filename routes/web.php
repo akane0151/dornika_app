@@ -16,8 +16,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get("/account", [App\Http\Controllers\Auth\AdminLoginController::class, 'loginForm']);
 Route::post("/account", [App\Http\Controllers\Auth\AdminLoginController::class, 'login'])->name('adminLogin');
-
 Route::get('/reload-captcha', [App\Http\Controllers\CaptchaController::class, 'reloadCaptcha']);
+
+Route::get("/listState", [App\Http\Controllers\GeoController::class, 'listState']);
+Route::get("/stateCities/{id}", [App\Http\Controllers\GeoController::class, 'stateCities']);
+
 Route::prefix('admin')->middleware("admin")->group(function () {
     Route::get('/logout', [App\Http\Controllers\AdminController::class, 'logout']);
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard']);

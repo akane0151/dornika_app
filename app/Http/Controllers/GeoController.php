@@ -13,6 +13,14 @@ class GeoController extends Controller
         $states = state::all();
         return view("admin.states",["states"=>$states]);
     }
+    public function listState(){
+        $states = state::select('id','name')->get();
+        return response()->json(['success'=>true,'states'=>$states]);
+    }
+    public function stateCities($id){
+        $cities = city::where("stateId",$id)->select("name")->get();
+        return response()->json(['success'=>true,'cities'=>$cities]);
+    }
     public function cityList(){
         $cities = city::all();
         $states = state::all();
