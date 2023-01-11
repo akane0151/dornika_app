@@ -74,11 +74,11 @@ class PostController extends Controller
             'id' => ['required', 'integer'],
             'content' => ['required', 'string','max:1000'],
             'thumbnail' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
-            'enable' => ['required', 'boolean'],
+            'enable' => [ 'string','max:3'],
         ]);
         try{
             $post = Post::find($request->post('id'));
-            $pic = null;
+            $pic = $post->thumnail;
             if(request()->hasfile('thumbnail')){
                 $img = request()->thumbnail;
                 $pic = 'postThumbnail_'.time().'.'.request()->thumbnail->getClientOriginalExtension();
@@ -96,7 +96,8 @@ class PostController extends Controller
                     "title"=>$request->post("title"),
                     "content"=>$request->post("content"),
                     "thumbnail"=>$pic,
-                    "enable"=>$request->post("enable"),
+                    "enable"=>$request->has("enable")?$request->post("enable"):"off",
+
                 ]);
                 return back()
                     ->with('success', 'اطلاعات بروزرسانی شد!');

@@ -36,6 +36,7 @@
                     </p>
                     <form action="{{ route('editPost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input id="id" name="id" hidden value="{{$post->id}}" />
                         <div>
                             <input type="text" id="title" name="title" class="form-control" placeholder="عنوان مطلب" value="{{$post->title}}" required="" oninvalid="this.setCustomValidity('لطفاً عنوان پست را وارد کنید')" oninput="this.setCustomValidity('')"/>
                             @if ($errors->has('title'))

@@ -112,7 +112,7 @@
         <!-- /header content -->
 
         <!-- page content -->
-        <div class="right_col main_col" role="main">
+        <div class="right_col main_col" role="main" style="min-height: 100vh;">
             <div class="">
                 @yield('content')
             </div>
