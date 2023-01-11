@@ -36,7 +36,7 @@ class PostController extends Controller
     {
         $validateData = $request->validate([
             'title' => ['required', 'string','max:128'],
-            'content' => ['required', 'string','max:1000'],
+            'content' => ['required', 'string','max:5000'],
             'thumbnail' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
             'enable' => ['string',"max:3"],
         ]);
@@ -72,7 +72,7 @@ class PostController extends Controller
     {
         $validateData = $request->validate([
             'id' => ['required', 'integer'],
-            'content' => ['required', 'string','max:1000'],
+            'content' => ['required', 'string','max:5000'],
             'thumbnail' => [ 'nullable','image','mimes:jpeg,jpg', 'max:200'],
             'enable' => [ 'string','max:3'],
         ]);

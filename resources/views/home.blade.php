@@ -51,7 +51,7 @@
                 </div>
                 <div class="caption">
                     <p>{{$p->title}}</p>
-
+                    <span><i class="fa fa-clock-o"></i> {{App\Helpers\readTime($p->content)}} دقیقه</span>
                 </div>
             </div>
         </div>
