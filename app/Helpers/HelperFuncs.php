@@ -10,9 +10,9 @@ namespace App\Helpers;
      */
     function readTime(string $text): int
     {
-        if (empty($text)) {
-            return 0;
-        }
+//        if (empty($text)) {
+//            return 0;
+//        }
 
         $textOnly = strip_tags($text);
         $wordsCount = str_word_count($textOnly);
