@@ -78,7 +78,7 @@ class PostController extends Controller
         ]);
         try{
             $post = Post::find($request->post('id'));
-            $pic = $post->thumnail;
+            $pic = $post->thumbnail;
             if(request()->hasfile('thumbnail')){
                 $img = request()->thumbnail;
                 $pic = 'postThumbnail_'.time().'.'.request()->thumbnail->getClientOriginalExtension();
