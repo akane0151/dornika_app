@@ -8,13 +8,13 @@ namespace App\Helpers;
      *
      * @return integer
      */
-    function readTime(string $text): int
+    function readTime(string $text)
     {
 //        if (empty($text)) {
 //            return 0;
 //        }
 
-        $textOnly = strip_tags($text);
+        return $textOnly = strip_tags($text);
         $wordsCount = str_word_count($textOnly);
         $wordsPerMin = 200;
 
