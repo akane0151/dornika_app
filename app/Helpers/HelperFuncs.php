@@ -13,9 +13,9 @@ namespace App\Helpers;
 //        if (empty($text)) {
 //            return 0;
 //        }
-
+        setlocale(LC_ALL, 'Farsi');
         $textOnly = strip_tags($text);
-        return $wordsCount = str_word_count($textOnly);
+        $wordsCount = str_word_count($textOnly);
         $wordsPerMin = 200;
 
         return ceil($wordsCount / $wordsPerMin);
