@@ -82,7 +82,7 @@ class RoleController extends Controller
     }
     public function editRole(Request $request)
     {
-        $role = Role::findById($request->post("id"));
+        $role = Role::where("id",$request->post("id"))->first();
         $validateData = $request->validate([
             'id' => ['required', 'integer'],
             'name' => ['required', 'string','max:32',Rule::unique('roles')->ignore($role->id)],
