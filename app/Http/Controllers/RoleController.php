@@ -82,14 +82,15 @@ class RoleController extends Controller
     }
     public function editRole(Request $request)
     {
+        $role = Role::findById($request->post("id"));
         $validateData = $request->validate([
             'id' => ['required', 'integer'],
-            'name' => ['required', 'string','max:32',Rule::unique('roles')->ignore(Role::findById($request->post("id")))],
+            'name' => ['required', 'string','max:32',Rule::unique('roles')->ignore($role->id)],
         ]);
         try{
 
 
-                $role = Role::findById($request->post("id"));
+
                 if($role){
                     $perms = Permission::all();
                     $newPerms = [];
