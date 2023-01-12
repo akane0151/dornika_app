@@ -70,7 +70,7 @@ class RoleController extends Controller
                         $newPerms[] = $p->name;
                     }
                 }
-                $role = Role::create(["name"=>$request->post("name")]);
+                $role = Role::create(["name"=>$request->post("name"),"guard_name"=>"admin"]);
                 $role->syncPermissions($newPerms);
 
                 return redirect("/admin/roles");

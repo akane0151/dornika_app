@@ -13,7 +13,6 @@ namespace App\Helpers;
         if (empty($text)) {
             return 0;
         }
-        setlocale(LC_ALL, 'Farsi');
         $textOnly = strip_tags($text);
         $wordsCount = str_word_count($textOnly, 0 , 'ابپتثجچ‌حخدذرز‌ژس‌شصضطظعغفقکگلمنوهیءآاًهٔه');
         $wordsPerMin = 200;
