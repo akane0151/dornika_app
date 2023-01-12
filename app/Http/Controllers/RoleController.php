@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -59,7 +60,7 @@ class RoleController extends Controller
     public function newRole(Request $request)
     {
         $validateData = $request->validate([
-            'name' => ['required', 'string','max:32'],
+            'name' => ['required', 'string','max:32',"unique:roles"],
         ]);
         try{
 
@@ -83,7 +84,7 @@ class RoleController extends Controller
     {
         $validateData = $request->validate([
             'id' => ['required', 'integer'],
-            'name' => ['required', 'string','max:32'],
+            'name' => ['required', 'string','max:32',Rule::unique('roles')->ignore(Role::findById($request->post("id")))],
         ]);
         try{
 

@@ -172,7 +172,7 @@ return [
         "scan_recom" => "معرفی نامه",
         "scan_cv" => "رزومه",
         "thumbnail" => "تصویر شاخص",
-        "name" => "نام محصول",
+        "name" => "نام",
         "product_model" => "مدل محصول",
         "model" => "مدل محصول",
         "stock" => "موجودی",
